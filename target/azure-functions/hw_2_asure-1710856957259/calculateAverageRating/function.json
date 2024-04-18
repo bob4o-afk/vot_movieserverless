@@ -1,0 +1,10 @@
+{
+  "scriptFile" : "../hw_2_asure-1.0-SNAPSHOT.jar",
+  "entryPoint" : "com.function.CalculateAverageRatingFunction.run",
+  "bindings" : [ {
+    "type" : "timerTrigger",
+    "direction" : "in",
+    "name" : "timerInfo",
+    "schedule" : "0 30 11 * * *"
+  } ]
+}

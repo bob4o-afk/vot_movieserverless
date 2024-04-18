@@ -1,0 +1,7 @@
+com/function/AddRatingFunction.class
+com/function/AddMovieFunction.class
+com/function/Movie.class
+com/function/Rating.class
+com/function/SearchMoviesFunction.class
+com/function/CalculateAverageRatingFunction.class
+com/function/EchoFunction.class
