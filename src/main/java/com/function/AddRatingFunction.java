@@ -14,15 +14,14 @@ public class AddRatingFunction {
     @FunctionName("addRating")
     public HttpResponseMessage run(
             @HttpTrigger(name = "req", methods = {HttpMethod.POST}, authLevel = AuthorizationLevel.ANONYMOUS) HttpRequestMessage<Optional<String>> request,
-            @BindingName("title") String title,
+            @BindingName("movie_id") int movie_id,
             @BindingName("opinion") String opinion,
             @BindingName("rating") int rating,
-            @BindingName("datetime") String datetime,
             @BindingName("author") String author,
             final ExecutionContext context) {
         context.getLogger().info("Java HTTP trigger processed a request.");
 
-        if (title == null || opinion == null || datetime == null || author == null) {
+        if (opinion == null || author == null) {
             return request.createResponseBuilder(HttpStatus.BAD_REQUEST).body("Please pass all rating information as query parameters.").build();
         }
 
@@ -30,8 +29,12 @@ public class AddRatingFunction {
             return request.createResponseBuilder(HttpStatus.BAD_REQUEST).body("Rating should be between 1 and 10.").build();
         }
 
+        if (movie_id < 0){
+            return request.createResponseBuilder(HttpStatus.BAD_REQUEST).body("Movie ID should be a positive int.").build();
+        }
+
         try {
-            Rating ratingObj = new Rating(title, opinion, rating, datetime, author);
+            Rating ratingObj = new Rating(movie_id, author, opinion, rating);
             insertRatingIntoDatabase(ratingObj);
 
             return request.createResponseBuilder(HttpStatus.OK).body("Rating added successfully.").build();
@@ -41,23 +44,20 @@ public class AddRatingFunction {
     }
 
     private void insertRatingIntoDatabase(Rating rating) throws SQLException {
-        DatabaseConfig config = new DatabaseConfig();
-
-        String jdbcUrl = config.getJdbcUrl();
-        String username = config.getUsername();
-        String password = config.getPassword();
+        String jdbcUrl = "jdbc:sqlserver://####.windows.net:1433;database=####";
+        String username = "####";
+        String password = "####";
 
         // SQL statement to insert a new rating
-        String sql = "INSERT INTO Ratings (Title, Opinion, Rating, DateTime, Author) VALUES (?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO Ratings_valeri (movie_id, author, opinion, rating) VALUES (?, ?, ?, ?)";
 
         try (Connection conn = DriverManager.getConnection(jdbcUrl, username, password);
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
-            pstmt.setString(1, rating.getTitle());
-            pstmt.setString(2, rating.getOpinion());
-            pstmt.setInt(3, rating.getRating());
-            pstmt.setString(4, rating.getDateTime());
-            pstmt.setString(5, rating.getAuthor());
+            pstmt.setInt(1, rating.getMovieId());
+            pstmt.setString(2, rating.getAuthor());
+            pstmt.setString(3, rating.getOpinion());
+            pstmt.setInt(4, rating.getRating());
 
             pstmt.executeUpdate();
         }

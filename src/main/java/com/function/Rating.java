@@ -1,24 +1,23 @@
 package com.function;
 
 public class Rating {
-    private String title;
+    private int movie_id;
     private String opinion;
     private int rating;
-    private String dateTime;
     private String author;
 
     // Constructor
-    public Rating(String title, String opinion, int rating, String dateTime, String author) {
-        this.title = title;
+    public Rating(int movie_id, String author, String opinion, int rating) {
+        this.movie_id = movie_id;
         this.opinion = opinion;
         this.rating = rating;
-        this.dateTime = dateTime;
         this.author = author;
     }
 
     // Getters
-    public String getTitle() {
-        return title;
+
+    public int getMovieId(){
+        return movie_id;
     }
 
     public String getOpinion() {
@@ -29,17 +28,13 @@ public class Rating {
         return rating;
     }
 
-    public String getDateTime() {
-        return dateTime;
-    }
-
     public String getAuthor() {
         return author;
     }
 
     // Setters
-    public void setTitle(String title) {
-        this.title = title;
+    public void setTitle(int movie_id) {
+        this.movie_id = movie_id;
     }
 
     public void setOpinion(String opinion) {
@@ -48,10 +43,6 @@ public class Rating {
 
     public void setRating(int rating) {
         this.rating = rating;
-    }
-
-    public void setDateTime(String dateTime) {
-        this.dateTime = dateTime;
     }
 
     public void setAuthor(String author) {

@@ -2,30 +2,30 @@ package com.function;
 
 public class Movie {
     private String title;
-    private int ReleaseYear;
+    private int year;
     private String genre;
     private String description;
     private String director;
     private String actors;
-    private double averageRating;
+    private double average_rating;
 
-    public Movie(String title, int ReleaseYear, String genre, String description, String director, String actors) {
+    public Movie(String title, int year, String genre, String director, String actors, String description, Double average_rating) {
         this.title = title;
-        this.ReleaseYear = ReleaseYear;
+        this.year = year;
         this.genre = genre;
-        this.description = description;
         this.director = director;
         this.actors = actors;
+        this.description = description;
+        this.average_rating = average_rating;
     }
 
-    public Movie(String title, int ReleaseYear, String genre, String description, String director, String actors, double averageRating) {
+    public Movie(String title, int year, String genre, String director, String actors, String description) {
         this.title = title;
-        this.ReleaseYear = ReleaseYear;
+        this.year = year;
         this.genre = genre;
-        this.description = description;
         this.director = director;
         this.actors = actors;
-        this.averageRating = averageRating;
+        this.description = description;
     }
 
     // Getters
@@ -33,8 +33,8 @@ public class Movie {
         return title;
     }
 
-    public int getReleaseYear() {
-        return ReleaseYear;
+    public int getYear() {
+        return year;
     }
 
     public String getGenre() {
@@ -54,7 +54,7 @@ public class Movie {
     }
 
     public double getAverageRating(){
-        return averageRating;
+        return average_rating;
     }
 
     // Setters
@@ -62,8 +62,8 @@ public class Movie {
         this.title = title;
     }
 
-    public void setReleaseYear(int ReleaseYear) {
-        this.ReleaseYear = ReleaseYear;
+    public void setReleaseYear(int year) {
+        this.year = year;
     }
 
     public void setGenre(String genre) {
@@ -82,7 +82,7 @@ public class Movie {
         this.actors = actors;
     }
 
-    public void setAverageRating(double averageRating) {
-        this.averageRating = averageRating;
+    public void setAverageRating(double average_rating) {
+        this.average_rating = average_rating;
     }
 }

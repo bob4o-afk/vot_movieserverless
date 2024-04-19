@@ -1,4 +1,6 @@
 com/function/AddRatingFunction.class
+com/function/FindThumbnailFunction.class
+com/function/DatabaseConfig.class
 com/function/AddMovieFunction.class
 com/function/Movie.class
 com/function/Rating.class

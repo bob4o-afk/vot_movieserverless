@@ -1,7 +1,9 @@
-/home/bobi/desktop/moi-neshta/TUES/razrabotka/hw_2_asure/serverless-movie-app/src/main/java/com/function/AddRatingFunction.java
-/home/bobi/desktop/moi-neshta/TUES/razrabotka/hw_2_asure/serverless-movie-app/src/main/java/com/function/Movie.java
-/home/bobi/desktop/moi-neshta/TUES/razrabotka/hw_2_asure/serverless-movie-app/src/main/java/com/function/Rating.java
-/home/bobi/desktop/moi-neshta/TUES/razrabotka/hw_2_asure/serverless-movie-app/src/main/java/com/function/AddMovieFunction.java
-/home/bobi/desktop/moi-neshta/TUES/razrabotka/hw_2_asure/serverless-movie-app/src/main/java/com/function/EchoFunction.java
-/home/bobi/desktop/moi-neshta/TUES/razrabotka/hw_2_asure/serverless-movie-app/src/main/java/com/function/SearchMoviesFunction.java
-/home/bobi/desktop/moi-neshta/TUES/razrabotka/hw_2_asure/serverless-movie-app/src/main/java/com/function/CalculateAverageRatingFunction.java
+/home/bobi/desktop/moi-neshta/TUES/vot/hw_asure/vot-serverless/vot_movieserverless/src/main/java/com/function/AddMovieFunction.java
+/home/bobi/desktop/moi-neshta/TUES/vot/hw_asure/vot-serverless/vot_movieserverless/src/main/java/com/function/Movie.java
+/home/bobi/desktop/moi-neshta/TUES/vot/hw_asure/vot-serverless/vot_movieserverless/src/main/java/com/function/CalculateAverageRatingFunction.java
+/home/bobi/desktop/moi-neshta/TUES/vot/hw_asure/vot-serverless/vot_movieserverless/src/main/java/com/function/Rating.java
+/home/bobi/desktop/moi-neshta/TUES/vot/hw_asure/vot-serverless/vot_movieserverless/src/main/java/com/function/EchoFunction.java
+/home/bobi/desktop/moi-neshta/TUES/vot/hw_asure/vot-serverless/vot_movieserverless/src/main/java/com/function/FindThumbnailFunction.java
+/home/bobi/desktop/moi-neshta/TUES/vot/hw_asure/vot-serverless/vot_movieserverless/src/main/java/com/function/SearchMoviesFunction.java
+/home/bobi/desktop/moi-neshta/TUES/vot/hw_asure/vot-serverless/vot_movieserverless/src/main/java/com/function/DatabaseConfig.java
+/home/bobi/desktop/moi-neshta/TUES/vot/hw_asure/vot-serverless/vot_movieserverless/src/main/java/com/function/AddRatingFunction.java

@@ -31,15 +31,19 @@ public class SearchMoviesFunction {
     }
 
     private List<Movie> searchMovies(String search) throws SQLException {
-        DatabaseConfig config = new DatabaseConfig();
+        // String jdbcUrl = System.getenv("DB_URL");
+        // String username = System.getenv("DB_USERNAME");
+        // String password = System.getenv("DB_PASSWORD");
 
-        String jdbcUrl = config.getJdbcUrl();
-        String username = config.getUsername();
-        String password = config.getPassword();
+        String jdbcUrl = "jdbc:sqlserver://####.windows.net:1433;database=####";
+        String username = "####";
+        String password = "####";
 
-        String selectSql = "SELECT * FROM Movies";
+
+        
+        String selectSql = "SELECT * FROM Movies_valeri";
         if (search != null && !search.isEmpty()) {
-            selectSql += " WHERE Title LIKE ?";
+            selectSql += " WHERE title LIKE ?";
         }
 
         try (Connection conn = DriverManager.getConnection(jdbcUrl, username, password);
@@ -53,13 +57,13 @@ public class SearchMoviesFunction {
                 List<Movie> movies = new ArrayList<>();
                 while (resultSet.next()) {
                     Movie movie = new Movie(
-                            resultSet.getString("Title"),
-                            resultSet.getInt("ReleaseYear"),
-                            resultSet.getString("Genre"),
-                            resultSet.getString("Description"),
-                            resultSet.getString("Director"),
-                            resultSet.getString("Actors"),
-                            resultSet.getDouble("AverageRating"));
+                            resultSet.getString("title"),
+                            resultSet.getInt("year"),
+                            resultSet.getString("genre"),
+                            resultSet.getString("director"),
+                            resultSet.getString("actors"),
+                            resultSet.getString("description"),
+                            resultSet.getDouble("average_rating"));
 
                     movies.add(movie);
                 }

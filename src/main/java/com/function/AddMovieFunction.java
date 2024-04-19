@@ -15,11 +15,11 @@ public class AddMovieFunction {
     public HttpResponseMessage run(
             @HttpTrigger(name = "req", methods = {HttpMethod.POST}, authLevel = AuthorizationLevel.ANONYMOUS) HttpRequestMessage<Optional<String>> request,
             @BindingName("title") String title,
-            @BindingName("ReleaseYear") int ReleaseYear,
+            @BindingName("year") int year,
             @BindingName("genre") String genre,
-            @BindingName("description") String description,
             @BindingName("director") String director,
             @BindingName("actors") String actors,
+            @BindingName("description") String description,
             final ExecutionContext context) {
         context.getLogger().info("Java HTTP trigger processed a request.");
 
@@ -28,7 +28,7 @@ public class AddMovieFunction {
         }
 
         try {
-            Movie movie = new Movie(title, ReleaseYear, genre, description, director, actors);
+            Movie movie = new Movie(title, year, genre, director, actors, description);
             insertMovieIntoDatabase(movie);
 
             return request.createResponseBuilder(HttpStatus.OK).body("Movie added successfully.").build();
@@ -38,25 +38,23 @@ public class AddMovieFunction {
     }
 
     private void insertMovieIntoDatabase(Movie movie) throws SQLException {
-        DatabaseConfig config = new DatabaseConfig();
-
-        String jdbcUrl = config.getJdbcUrl();
-        String username = config.getUsername();
-        String password = config.getPassword();
+        String jdbcUrl = "jdbc:sqlserver://####.windows.net:1433;database=####";
+        String username = "####";
+        String password = "####";
 
 
         // SQL statement to insert a new movie
-        String sql = "INSERT INTO Movies (Title, ReleaseYear, Genre, Description, Director, Actors) VALUES (?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO Movies_valeri (title, year, genre, director, actors, description) VALUES (?, ?, ?, ?, ?, ?)";
 
         try (Connection conn = DriverManager.getConnection(jdbcUrl, username, password);
             PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
             pstmt.setString(1, movie.getTitle());
-            pstmt.setInt(2, movie.getReleaseYear());
+            pstmt.setInt(2, movie.getYear());
             pstmt.setString(3, movie.getGenre());
-            pstmt.setString(4, movie.getDescription());
-            pstmt.setString(5, movie.getDirector());
-            pstmt.setString(6, movie.getActors());
+            pstmt.setString(4, movie.getDirector());
+            pstmt.setString(5, movie.getActors());
+            pstmt.setString(6, movie.getDescription());
 
             pstmt.executeUpdate();
         }

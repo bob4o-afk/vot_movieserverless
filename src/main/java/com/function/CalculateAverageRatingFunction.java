@@ -25,35 +25,35 @@ public class CalculateAverageRatingFunction {
     }
 
     private void updateAverageRatings() throws SQLException {
-        DatabaseConfig config = new DatabaseConfig();
+        String jdbcUrl = "jdbc:sqlserver://####.windows.net:1433;database=####";
+        String username = "####";
+        String password = "####";
 
-        String jdbcUrl = config.getJdbcUrl();
-        String username = config.getUsername();
-        String password = config.getPassword();
-
-        String selectSql = "SELECT Title, AVG(Rating) AS AverageRating FROM Ratings GROUP BY Title";
+        
+        String selectSql = "SELECT movie_id, AVG(Ratings_valeri) AS average_rating FROM Ratings_valeri GROUP BY movie_id";
 
         try (Connection conn = DriverManager.getConnection(jdbcUrl, username, password);
              PreparedStatement pstmt = conn.prepareStatement(selectSql);
              ResultSet resultSet = pstmt.executeQuery()) {
 
             while (resultSet.next()) {
-                String title = resultSet.getString("Title");
-                double averageRating = resultSet.getDouble("AverageRating");
+                int movieId = resultSet.getInt("movie_id");
+                double averageRating = resultSet.getDouble("average_rating");
 
-                updateMovieWithAverageRating(conn, title, averageRating);
+                updateMovieWithAverageRating(conn, movieId, averageRating);
             }
         }
     }
 
-    private void updateMovieWithAverageRating(Connection conn, String title, double averageRating) throws SQLException {
-        String updateSql = "UPDATE Movies SET AverageRating = ? WHERE Title = ?";
+    private void updateMovieWithAverageRating(Connection conn, int movieId, double averageRating) throws SQLException {
+        String updateSql = "UPDATE Movies_valeri SET average_rating = ? WHERE movie_id = ?";
 
         try (PreparedStatement pstmt = conn.prepareStatement(updateSql)) {
             pstmt.setDouble(1, averageRating);
-            pstmt.setString(2, title);
+            pstmt.setInt(2, movieId);
 
             pstmt.executeUpdate();
         }
     }
+
 }
